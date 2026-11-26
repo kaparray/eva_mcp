@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.env
+token
+.DS_Store
+.main.js
+.protocol-src/
+# generated per EVA instance (install.sh / --refresh-catalog / --refresh-protocol)
+catalog.json
+protocol.json

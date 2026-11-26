@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Syntax
+        run: python -m py_compile server.py ubql.py gittools.py timetracker.py reports.py planning.py servicedesk.py tools/extract_protocol.py
+      - name: Offline tests
+        env:
+          EVA_TOKEN: offline
+          EVA_AUDIT_LOG: "0"
+        run: python -m unittest discover -s tests -v
